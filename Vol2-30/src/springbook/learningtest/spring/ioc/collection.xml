@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="beanC" class="springbook.learningtest.spring.ioc.ValueInjectionTest$BeanC">
+		<property name="nameList">
+			<list>
+				<value>Spring</value>
+				<value>IoC</value>
+				<value>DI</value>
+			</list>
+		</property>
+		<property name="nameSet">
+			<set>
+				<value>Spring</value>
+				<value>IoC</value>
+				<value>DI</value>
+			</set>
+		</property>
+		<property name="ages">
+			<map>
+				<entry key="Kim" value="30" />
+				<entry key="Lee" value="35" />
+				<entry key="Ahn" value="40" />
+			</map>
+		</property>
+		<property name="settings" ref="settings">
+			<!-- <props>
+				<prop key="username">Spring</prop>
+				<prop key="password">Book</prop>
+			</props>  -->
+		</property>
+		<property name="beans">
+			<list>
+				<ref bean="beanC" />
+				<ref bean="beanC" />
+			</list>
+		</property>
+	</bean>
+	
+	<util:properties id="settings">
+		<prop key="username">Spring</prop>
+		<prop key="password">Book</prop>
+	</util:properties>
+</beans>

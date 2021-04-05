@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.9.1.201203220057-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/test-applicationContext.xml</config>
+		<config>src/springbook/learningtest/spring31/ioc/beanrole.xml</config>
+		<config>src/springbook/learningtest/spring31/ioc/edb.xml</config>
+		<config>src/springbook/learningtest/spring31/ioc/profile.xml</config>
+		<config>src/springbook/learningtest/jdk/properites/context.xml</config>
+		<config>src/springbook/learningtest/spring31/ioc/appconfig2.xml</config>
+		<config>src/springbook/learningtest/spring/resource/resources.xml</config>
+		<config>src/springbook/learningtest/spring31/web/servlet.xml</config>
+		<config>src/springbook/learningtest/spring31/cache/cache.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

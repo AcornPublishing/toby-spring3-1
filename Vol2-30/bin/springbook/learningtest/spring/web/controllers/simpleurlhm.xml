@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<!-- <props>
+				<prop key="/hello">c1</prop>
+				<prop key="/multi/*">c2</prop>
+				<prop key="/deep/**/sub">c3</prop>
+			</props> -->
+			<value>
+				/hello=c1
+				/multi/*=c2
+				/deep/**/sub=c3
+			</value>
+		</property>
+	</bean>
+	
+	<bean name="c1" class="springbook.learningtest.spring.web.controllers.HandlerMappingTest$Controller1">
+		<property name="url" value="c1" />
+	</bean>
+	
+	<bean name="c2" class="springbook.learningtest.spring.web.controllers.HandlerMappingTest$Controller1">
+		<property name="url" value="c2" />
+	</bean>
+	
+	<bean name="c3" class="springbook.learningtest.spring.web.controllers.HandlerMappingTest$Controller1">
+		<property name="url" value="c3" />
+	</bean>
+</beans>

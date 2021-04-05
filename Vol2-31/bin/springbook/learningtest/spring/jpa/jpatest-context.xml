@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceXmlLocation" value="springbook/learningtest/spring/jpa/persistence.xml" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="eclipselink.weaving">false</prop>
+			</props>
+		</property>  
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+		<!-- <property name="loadTimeWeaver">
+			<bean class="org.springframework.instrument.classloading.SimpleLoadTimeWeaver" />
+		</property>  -->  
+	</bean>
+	
+	<bean id="memberDao" class="springbook.learningtest.spring.jpa.JpaTest$MemberDao">
+	</bean>
+	
+	<bean id="memberRepositoryDao" class="springbook.learningtest.spring.jpa.JpaTest$MemberRepositoryDao">
+	</bean>
+	
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	
+	<bean id="memberTemplateDao" class="springbook.learningtest.spring.jpa.JpaTest$MemberTemplateDao">
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/springbook?characterEncoding=UTF-8" />
+		<property name="username" value="spring" />
+		<property name="password" value="book" />
+	</bean>
+	
+	<context:annotation-config />
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emf" />
+	</bean>
+	
+</beans>

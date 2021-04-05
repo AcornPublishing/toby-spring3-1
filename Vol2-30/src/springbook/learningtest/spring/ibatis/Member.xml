@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Member">
+  <typeAlias alias="Member" type="springbook.learningtest.spring.jdbc.Member"/>
+  
+  <delete id="deleteMemberAll">
+    delete from member
+  </delete>
+  
+  <insert id="insertMember" parameterClass="Member">
+    insert into member (id, name, point) values( #id#, #name#, #point#)
+  </insert>
+  
+  <select id="findMemberById" parameterClass="int" resultClass="Member">
+    select * from member where id = #id#
+  </select>
+    
+  <select id="findMembers"  resultClass="Member">
+    select * from member order by id
+  </select>
+  
+  
+
+  <!-- Result maps describe the mapping between the columns returned
+       from a query, and the class properties.  A result map isn't
+       necessary if the columns (or aliases) match to the properties 
+       exactly. -->
+  <!-- <resultMap id="AccountResult" class="Account">
+    <result property="id" column="ACC_ID"/>
+    <result property="firstName" column="ACC_FIRST_NAME"/>
+    <result property="lastName" column="ACC_LAST_NAME"/>
+    <result property="emailAddress" column="ACC_EMAIL"/>
+  </resultMap>  -->
+
+  <!-- Select with no parameters using the result map for Account class. -->
+  <!-- <select id="selectAllAccounts" resultMap="AccountResult">
+    select * from ACCOUNT
+  </select>  -->
+
+  <!-- A simpler select example without the result map.  Note the 
+       aliases to match the properties of the target result class. -->
+  <!--<select id="selectAccountById" parameterClass="int" resultClass="Account">
+    select
+      ACC_ID as id,
+      ACC_FIRST_NAME as firstName,
+      ACC_LAST_NAME as lastName,
+      ACC_EMAIL as emailAddress
+    from ACCOUNT
+    where ACC_ID = #id#
+  </select>-->
+   
+  <!-- Insert example, using the Account parameter class -->
+  <!--<insert id="insertAccount" parameterClass="Account">
+    insert into ACCOUNT (
+      ACC_ID,
+      ACC_FIRST_NAME,
+      ACC_LAST_NAME,
+      ACC_EMAIL
+    values (
+      #id#, #firstName#, #lastName#, #emailAddress#
+    )
+  </insert>-->
+
+  <!-- Update example, using the Account parameter class -->
+  <!--<update id="updateAccount" parameterClass="Account">
+    update ACCOUNT set
+      ACC_FIRST_NAME = #firstName#,
+      ACC_LAST_NAME = #lastName#,
+      ACC_EMAIL = #emailAddress#
+    where
+      ACC_ID = #id#
+  </update>-->
+
+  <!-- Delete example, using an integer as the parameter class -->
+  
+
+</sqlMap>

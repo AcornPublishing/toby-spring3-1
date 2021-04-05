@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="springbook.learningtest.spring.hibernate">
+	<class name="Member" table="MEMBER">
+		<id name="id" column="ID" />
+		<property name="name" column="NAME" length="100" />
+		<property name="point" column="POINT" type="double" not-null="false" />
+	</class>
+</hibernate-mapping>

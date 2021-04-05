@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+
+	<!-- DataSource -->
+	<bean id="dataSource1" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+		<property name="uniqueResourceName" value="MySQLXA1" />
+		<property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+		<property name="xaProperties">
+			<props>
+				<prop key="user">spring</prop>
+				<prop key="password">book</prop>
+				<prop key="url">jdbc:mysql://localhost/tx1</prop>
+			</props>
+		</property>
+		<property name="poolSize" value="1" />
+	</bean>
+	
+	<bean id="dataSource2" class="com.atomikos.jdbc.AtomikosDataSourceBean"	init-method="init" destroy-method="close">
+		<property name="uniqueResourceName" value="MySQLXA2" />
+		<property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+		<property name="xaProperties">
+			<props>
+				<prop key="user">spring</prop>
+				<prop key="password">book</prop>
+				<prop key="url">jdbc:mysql://localhost/tx2</prop>
+			</props>
+		</property>
+		<property name="poolSize" value="1" />
+	</bean>
+
+	<bean id="dataSource3" class="com.atomikos.jdbc.AtomikosDataSourceBean"	init-method="init" destroy-method="close">
+		<property name="uniqueResourceName" value="MySQLXA3" />
+		<property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />
+		<property name="xaProperties">
+			<props>
+				<prop key="user">spring</prop>
+				<prop key="password">book</prop>
+				<prop key="url">jdbc:mysql://localhost/tx3</prop>
+			</props>
+		</property>
+		<property name="poolSize" value="1" />
+	</bean>
+
+	<!-- DAO -->
+	<bean id="jdbcDao1" class="springbook.learningtest.spring.tx.JtaTxTest$MemberJdbcDao">
+		<property name="dataSource" ref="dataSource1" />
+	</bean>
+	
+	<bean id="jdbcDao2" class="springbook.learningtest.spring.tx.JtaTxTest$MemberJdbcDao">
+		<property name="dataSource" ref="dataSource2" />
+	</bean>
+		
+	<bean id="hibernateDao" class="springbook.learningtest.spring.tx.JtaTxTest$MemberHibernateDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- JTA -->
+	<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init" destroy-method="close">
+		<property name="forceShutdown"><value>true</value></property>
+	</bean>
+	
+	<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+	    <property name="transactionTimeout"><value>300</value></property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager"><ref bean="atomikosTransactionManager"  /></property>
+		<property name="userTransaction"><ref bean="atomikosUserTransaction"  /></property>
+	</bean>
+		
+	<!-- <bean id="jpaDao" class="springbook.learningtest.spring.tx.JtaTxTest$MemberJpaDao">
+	</bean>
+
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource4" />
+		<property name="persistenceXmlLocation" value="springbook/learningtest/spring/tx/persistence.xml" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="eclipselink.weaving">false</prop>
+			</props>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+				<property name="generateDdl" value="false" />
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+	</bean>
+	 -->
+	 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource3" />
+		<property name="annotatedClasses">
+			<list>
+				<value>springbook.learningtest.spring.hibernate.Member</value>
+			</list>		
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="hbm2ddl.auto">update</prop>
+            </props>
+		</property>
+		
+	</bean>	 
+
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+</beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/com.springsource.net.sf.cglib-2.2.0.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/com.springsource.org.junit-4.7.0.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/com.springsource.javax.mail-1.4.0.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/com.springsource.javax.activation-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/mockito-all-1.8.4.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/com.springsource.org.aspectj.tools-1.6.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.aop-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.asm-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.aspects-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.beans-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.context-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.context.support-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.core-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.expression-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.jdbc-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.test-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/spring30-lib/lib/org.springframework.transaction-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
